@@ -704,8 +704,8 @@ export component SessionDialog inherits Rectangle {
                 label: @tr("Note (optional)");
                 placeholder: @tr("Anything to remember about this host");
                 value <=> root.draft-note;
-                min-height: 32px;
-                max-height: 160px;
+                text-min-height: 32px;
+                text-max-height: 160px;
                 normalize-text(t) => { root.normalize-text(t); }
             }
 

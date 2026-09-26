@@ -192,8 +192,10 @@ export component LabeledTextArea inherits VerticalLayout {
     in property <string> label;
     in property <string> placeholder;
     in-out property <string> value;
-    in property <length> min-height: 32px;
-    in property <length> max-height: 160px;
+    // Not `min-height`/`max-height`: those clash with the built-in layout
+    // constraint properties every element already declares.
+    in property <length> text-min-height: 32px;
+    in property <length> text-max-height: 160px;
     in property <brush> input-background: Theme.bg-root;
     in property <brush> idle-border: Theme.border-subtle;
     callback normalize-text(string) -> string;
@@ -207,8 +209,8 @@ export component LabeledTextArea inherits VerticalLayout {
     }
 
     Rectangle {
-        height: max(root.min-height,
-                    min(root.max-height, input.preferred-height + 12px));
+        height: max(root.text-min-height,
+                    min(root.text-max-height, input.preferred-height + 12px));
         border-radius: Theme.radius-sm;
         border-width: 1px;
         border-color: input.has-focus ? Theme.accent : root.idle-border;
